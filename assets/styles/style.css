@@ -14,9 +14,13 @@ body {
     background: #c7cdd3;
 }
 
+img {
+    width: 48px;
+}
+
 .card {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     position: relative;
 
     transform-style: preserve-3d;
@@ -48,7 +52,7 @@ body {
 .card-back {
     color: #101c2c;
     background: #05c3ff;
-    font-size: 40px;
+    font-size: 27px;
     /* display: none; */
 }
 

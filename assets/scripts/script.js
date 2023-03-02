@@ -2,4 +2,54 @@ const FRONT = "cardFront";
 
 const BACK = "cardBack";
 
-let apps = ["html", "css", "js", "angular", "react", "node", "mongodb", "firebase", "python", "java"];
+let techs = ["html", "css", "js", "angular", "react", "node", "mongodb", "firebase", "python", "java"];
+
+let cards = null;
+
+startGame();
+
+function startGame() {
+    cards = createCardsFromTechs(techs);
+    shuffleCards(cards);
+    console.log(cards);
+}
+
+function shuffleCards(cards) {
+    let currentIndex = cards.length;
+    let randomIndex = 0;
+
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]];
+    }
+}
+
+function createCardsFromTechs(techs) {
+    let cards = [];
+
+    for (let tech of techs) {
+        cards.push(createPairFromTech(tech));
+    }
+
+    return cards.flatMap((pair) => pair);
+}
+
+function createPairFromTech(tech) {
+    return [
+        {
+            id: createIdWithTech(tech),
+            icon: tech,
+            flipped: false,
+        },
+        {
+            id: createIdWithTech(tech),
+            icon: tech,
+            flipped: false,
+        },
+    ];
+}
+
+function createIdWithTech(tech) {
+    return tech + parseInt(Math.random() * 1000);
+}
