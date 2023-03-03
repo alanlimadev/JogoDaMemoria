@@ -6,14 +6,13 @@ const ICON = "icon";
 startGame();
 
 function startGame() {
-    // cards = game.createCardsFromTechs();
-    // shuffleCards(cards);
-
     initializeCards(game.createCardsFromTechs());
 }
 
 function initializeCards(cards) {
     let gameBoard = document.getElementById("gameBoard");
+
+    gameBoard.innerHTML = "";
 
     game.cards.forEach((card) => {
         let cardElement = document.createElement("div");
@@ -56,6 +55,10 @@ function flipCard() {
         if (game.secondCard) {
             if (game.checkMatch()) {
                 game.clearCards();
+                if (game.checkGameOver()) {
+                    let gameOverLayer = document.getElementById("gameOver");
+                    gameOverLayer.style.display = "flex";
+                }
             } else {
                 setTimeout(() => {
                     let firstCardView = document.getElementById(game.firstCard.id);
@@ -68,4 +71,11 @@ function flipCard() {
             }
         }
     }
+}
+
+function restart() {
+    game.clearCards();
+    startGame();
+    let gameOverLayer = document.getElementById("gameOver");
+    gameOverLayer.style.display = "none";
 }
